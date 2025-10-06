@@ -12,3 +12,7 @@ spec:
     imagePullPolicy: Always # <-- it will pull the image if any changes are Made, Alwayes Update image
   nodeSelector:
     disktype: ssd
+
+# imagePullPolicy: IfNotPresent ---> ante image unte pull cheyadu, In case few modification chesi image ni build chesi and docker registry/Hub ki push cheysaru Updated iamge ni, appudu edi pull chesukodu, yendhuku ante IfNotPresent ante image lekapote ney pull cheysukuntumdhi. 
+
+# For example miku error vachhinappud malli image build cheysi push chesina Hub ki edi IFNotPresent ani este pull cheysukodu. old iamge untumdhi. So Always --> Always ni avvatam safe and best.
