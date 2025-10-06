@@ -11,5 +11,4 @@ spec:
     image: nginx
     imagePullPolicy: Always # <-- it will pull the image if any changes are Made, Alwayes Update image
   nodeSelector:
-    disktype: ssd 
-
+    disktype: ssd
