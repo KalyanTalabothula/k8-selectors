@@ -1,0 +1,15 @@
+# 🔎 kuberntes show labels
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: node-selector-demo 
+  labels: 
+    env: test
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: Always # <-- it will pull the image if any changes are Made, Alwayes Update image
+  nodeSelector:
+    disktype: ssd 
+
