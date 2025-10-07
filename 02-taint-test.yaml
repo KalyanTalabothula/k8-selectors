@@ -12,6 +12,11 @@ spec:
     imagePullPolicy: Always # <-- it will pull the image if any changes are Made, Alwayes Update image
   nodeSelector:
     disktype: ssd
+  tolerations:
+  - key: "key1"
+    value: "value1"
+    operator: "Equal"
+    effect: "NoExecute"
 
 # Eee Pod STATUS Pending lo ney undi pothumdhi.. Yendhuku ante nenu ee Pod ni oka particular NODE lo vellamani cheppanu, Based on the label. But aa NODE yemi chesimdi Taint chesimdi.
 
