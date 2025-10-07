@@ -19,6 +19,10 @@ spec:
 
 # NoSchedule --> Not-allow any POD. Kubernetes lo Scheduler ane componet okati untumdhi, dhanini { Control plan component }. yekkada Schedule cheyali ani nodeSelector ane parameter ni check cheysukumtumdhi. nodeSelector lopalaki velli, disktype yenti ani chusukuntmdhi. But aa node taint cheysimdhi, Taint cheysimdhi kabatti Clash vachhimdhi, Clash vachhimdhi kabatti adi ina Pending Status lo undi pothumdhi anamata. 
 
-# NoSchedule --> Unna Pod run avutai, New Pod yemi Run avvavu ee Node lo. 
+# NoSchedule --> Unna Pod run avutai, New Pod yemi Run avvavu ee Node lo.
+
+# NoSchedule --> Hard gha cheppatam
+# PreferNoSchedule --> soft gha chepputunnam 
+# NoExecute --> present node lopala unna vatani kuda Tisey ani, Very Harsh gha chepputunnam. 
 
 # labels --> Node --> Taint --> NoSchedule --> Clash --> Pending Status.
