@@ -10,7 +10,7 @@ spec:
   - name: nginx
     image: nginx
     imagePullPolicy: Always # <-- it will pull the image if any changes are Made, Alwayes Update image
-  nodeSelector:
+  nodeSelector:   # manam toleration echhina guarantee ledu, pakka gha nodeSelector kuda use cheyali, appudu pakkda manaki Schedule avutmdhi. 
     disktype: ssd
   tolerations:  # yenni Taint unte annitiki tolerations add cheyali
   - key: "key1"
