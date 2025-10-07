@@ -1,0 +1,22 @@
+# 🔎 kuberntes show labels
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: node-selector-demo-1
+  labels: 
+    env: test
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: Always # <-- it will pull the image if any changes are Made, Alwayes Update image
+  nodeSelector:
+    disktype: ssd
+
+# Eee Pod STATUS Pending lo ney undi pothumdhi.. Yendhuku ante nenu ee Pod ni oka particular NODE lo vellamani cheppanu, Based on the label. But aa NODE yemi chesimdi Taint chesimdi.
+
+# $ kubectl taint nodes ip-192-168-19-250.ec2.internal key1=value1:NoSchedule  --> vere vallu yevvaru ee Node loniki ravataniki Not-Allowed ani cheppi unnam. 
+
+# NoSchedule --> Not-allow any POD. Kubernetes lo Scheduler ane componet okati untumdhi, dhanini { Control plan component }. yekkada Schedule cheyali ani nodeSelector ane parameter ni check cheysukumtumdhi. nodeSelector lopalaki velli, disktype yenti ani chusukuntmdhi. But aa node taint cheysimdhi, Taint cheysimdhi kabatti Clash vachhimdhi, Clash vachhimdhi kabatti adi ina Pending Status lo undi pothumdhi anamata. 
+
+# labels --> Node --> Taint --> NoSchedule --> Clash --> Pending Status. 
