@@ -21,7 +21,7 @@ metadata:
 spec: 
   affinity:
     podAffinity: # <-- ee pod ki vere pod ante istam undhi
-      requiredDuringSchedulingIgnoredDuringExecution:
+      requiredDuringSchedulingIgnoredDuringExecution:   # <-- Hard-rule
       - labelSelector:
           matchExpressions:
           - key: app-name   # <-- pod-1 labels lo key 
