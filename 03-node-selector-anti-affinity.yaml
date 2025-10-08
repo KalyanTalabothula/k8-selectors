@@ -1,0 +1,22 @@
+# 🔎 affinity and anti-affinity kubernetes
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: with-node-affinity
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution: # <-- Hard
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: hardware   # < --
+            operator: In  # < --
+            values:
+            - gpu  # < -- we can give multiple values, means multiple nodes value mention cheyachhu. 
+  containers:
+  - name: with-node-affinity
+    image: nginx 
+
+# nodeSelctor lo ite key: value, only single value, ఒక్క value మాత్రమే. 
+# affinity lo ite ఒక్క key కి multiple values ఇవ్వచ్చు. --> multiple nodes 
