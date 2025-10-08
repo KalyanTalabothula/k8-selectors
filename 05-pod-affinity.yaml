@@ -21,14 +21,24 @@ metadata:
 spec: 
   affinity:
     podAffinity: # <-- ee pod ki vere pod ante istam undhi
-      requiredDuringSchedulingIgnoredDuringExecution:   # <-- Hard-rule
+      # requiredDuringSchedulingIgnoredDuringExecution:   # <-- Hard-rule
+      # - labelSelector:
+      #     matchExpressions:
+      #     - key: app-name   # <-- pod-1 labels lo key 
+      #       operator: In
+      #       values:
+      #       - pod-1 # <-- pod-1 labels lo value 
+      #   topologyKey: "kubernetes.io/hostname"  # <-- ee mactching pod yekkada undhi ani find-out cheyyataniki dhaniki host-name tho ney find-out chestumdhi, find-out chesi ee Pod-2 ni aa host lo place chestumdhi.  
+      preferredDuringSchedulingIgnoredDuringExecution:   # <-- Soft-rule
+      - weight: 1     # <-- your 1 - 100 you can select 
+        podAffinityTerm:     # <--
       - labelSelector:
           matchExpressions:
-          - key: app-name   # <-- pod-1 labels lo key 
+          - key: app-name    
             operator: In
             values:
-            - pod-1 # <-- pod-1 labels lo value 
-        topologyKey: "kubernetes.io/hostname"  # <-- ee mactching pod yekkada undhi ani find-out cheyyataniki dhaniki host-name tho ney find-out chestumdhi, find-out chesi ee Pod-2 ni aa host lo place chestumdhi.  
+            - pod-1  
+        topologyKey: "kubernetes.io/hostname"
   containers:
   - name: pod-2
     image: nginx 
