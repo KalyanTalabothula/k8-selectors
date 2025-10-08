@@ -1,0 +1,34 @@
+# 🔎 affinity and anti-affinity kubernetes  --> Assign pod to node
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+  labels: 
+    app-name: pod-1   # key:value
+    purpose: pod-affinity
+spec: 
+  containers:
+  - name: pod-1
+    image: nginx 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-2
+  labels: 
+    app-name: pod-2
+    purpose: pod-affinity
+spec: 
+  affinity:
+    podAntiAffinity:    # <--  
+      requiredDuringSchedulingIgnoredDuringExecution:   # <-- Hard-rule
+      - labelSelector:
+          matchExpressions:
+          - key: app-name   # <-- pod-1 labels lo key 
+            operator: In
+            values:
+            - pod-1 # <-- pod-1 labels lo value 
+        topologyKey: "kubernetes.io/hostname"  # <-- ee mactching pod yekkada undhi ani find-out cheyyataniki dhaniki host-name tho ney find-out chestumdhi, find-out chesi ee Pod-2 ni aa host lo place chestumdhi.  
+  containers:
+  - name: pod-2
+    image: nginx 
