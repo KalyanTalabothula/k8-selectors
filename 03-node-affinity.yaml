@@ -11,7 +11,7 @@ spec:
       #   nodeSelectorTerms:
       #   - matchExpressions:
       #     - key: hardware   # < --
-      #       operator: In  # < -- 
+      #       operator: In  # < -- matching the labels
       #       values:
       #       #- gpu  # < -- we can give multiple values, means multiple nodes value mention cheyachhu. 
       #       - gpuuuu
