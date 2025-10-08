@@ -28,9 +28,12 @@ spec:
             operator: In
             values:
             - pod-1 # <-- pod-1 labels lo value 
+        topologyKey: "kubernetes.io/hostname"  # <-- ee mactching pod yekkada undhi ani find-out cheyyataniki dhaniki host-name tho ney find -out chestumdhi. 
   containers:
   - name: pod-2
     image: nginx 
 
 # Scheduler 1st pod-1 defination( ante code) check cheysina taruwata, Next pod-2 defination check chestunmdhi. 
 # Now, Edi Pod-2 fine, labels echharu okay, Next Pod lo podAffinity ani undhi ante ee Pod-2 ki vere Pod ante istam undhi okay, next Hard-rule, next labelSelector --> ante labels ni batti select cheyamani chepputumdhi okay, Next yemi labels ani check chestumdhi, app-name--> IN --> Pod-1.  Now app-name IN Pod-1 ani yekkada undo, akkada ee Pod-2 ni Schedule cheysi execute cheystumdhi.
+
+# topologyKey: "kubernetes.io/hostname"   Host-name important Scheduler. Scheduler ki evvali topologykey anedi yendhuku ante Host find-out cheyataniki. Ee macthing pod yekkada undhi ani find-out cheyyataniki dhaniki host-name tho ney find-out chestumdhi. Find-out chesey, aa Host lo ee Pod-2 ni place chestumdhi. 
