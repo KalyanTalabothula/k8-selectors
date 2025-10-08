@@ -1,13 +1,36 @@
-# 🔎 affinity and anti-affinity kubernetes
-
+# 🔎 affinity and anti-affinity kubernetes  --> Assign pod to node
 apiVersion: v1
 kind: Pod
 metadata:
   name: pod-1
   labels: 
-    app-name: pod-1
+    app-name: pod-1   # key:value
     purpose: pod-affinity
 spec: 
   containers:
   - name: pod-1
     image: nginx 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-2
+  labels: 
+    app-name: pod-2
+    purpose: pod-affinity
+spec: 
+  affinity:
+    podAffinity: # <-- ee pod ki vere pod ante istam undhi
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app-name   # <-- pod-1 labels lo key 
+            operator: In
+            values:
+            - pod-1 # <-- pod-1 labels lo value 
+  containers:
+  - name: pod-2
+    image: nginx 
+
+# Scheduler 1st pod-1 defination( ante code) check cheysina taruwata, Next pod-2 defination check chestunmdhi. 
+# Now, Edi Pod-2 fine, labels echharu okay, Next Pod lo podAffinity ani undhi ante ee Pod-2 ki vere Pod ante istam undhi okay, next Hard-rule, next labelSelector --> ante labels ni batti select cheyamani chepputumdhi okay, Next yemi labels ani check chestumdhi, app-name--> IN --> Pod-1.  Now app-name IN Pod-1 ani yekkada undo, akkada ee Pod-2 ni Schedule cheysi execute cheystumdhi.
