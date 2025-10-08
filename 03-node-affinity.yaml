@@ -7,16 +7,16 @@ metadata:
 spec:
   affinity:
     nodeAffinity:
-      # requiredDuringSchedulingIgnoredDuringExecution: # <-- Hard
+      # requiredDuringSchedulingIgnoredDuringExecution: # <-- Hard-rule
       #   nodeSelectorTerms:
       #   - matchExpressions:
       #     - key: hardware   # < --
       #       operator: In  # < -- matching the labels
       #       values:
-      #       #- gpu  # < -- we can give multiple values, means multiple nodes value mention cheyachhu. 
+      #       #- gpu  # # <-- we can give multiple values, means multiple nodes value mention cheyachhu, affinity & antiffinity lo. 
       #       - gpuuuu
       preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
+      - weight: 1  # <-- only soft-rule lo ney weight untumdhi, Hard-rule lo undadhu.
         preference:
           matchExpressions:
           - key: another-node-label-key

@@ -1,0 +1,21 @@
+# 🔎 affinity and anti-affinity kubernetes
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: with-node-anti-affinity
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution: # <-- Hard rule
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: hardware   
+            operator: NotIn  # < -- 11.254 node tappa rest 2-nodes loki velutumdhi. 
+            values:
+            - gpu  # <-- we can give multiple values, means multiple nodes value mention cheyachhu, affinity & antiffinity lo. 
+  containers:
+  - name: with-node-anti-affinity
+    image: nginx 
+
+# operator: NotIn  # < -- 11.254 node tappa rest 2-nodes loki velutumdhi.
